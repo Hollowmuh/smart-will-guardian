@@ -26,7 +26,8 @@ const CreateWillWizard: React.FC = () => {
     letter: '',
     overridePassword: '',
     confirmPassword: '',
-    acknowledgeRisks: false
+    acknowledgeRisks: false,
+    proofOfLifeInterval: 12
   });
 
   const updateFormData = (data: Partial<FormData>) => {
@@ -56,7 +57,8 @@ const CreateWillWizard: React.FC = () => {
         return formData.overridePassword && 
                formData.confirmPassword && 
                formData.overridePassword === formData.confirmPassword &&
-               formData.acknowledgeRisks;
+               formData.acknowledgeRisks &&
+               formData.proofOfLifeInterval > 0;
       default:
         return true;
     }
@@ -84,6 +86,7 @@ const CreateWillWizard: React.FC = () => {
             overridePassword={formData.overridePassword}
             confirmPassword={formData.confirmPassword}
             acknowledgeRisks={formData.acknowledgeRisks}
+            proofOfLifeInterval={formData.proofOfLifeInterval}
             onChange={(data) => updateFormData(data)}
           />
         );
@@ -91,7 +94,7 @@ const CreateWillWizard: React.FC = () => {
         return (
           <ReviewForm
             formData={formData}
-            onDeploy={() => navigate('/deployment')}
+            onDeploy={() => navigate('/dashboard')}
           />
         );
       default:

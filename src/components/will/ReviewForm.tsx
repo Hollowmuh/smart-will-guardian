@@ -174,7 +174,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, onDeploy }) => {
                 <p className="text-sm text-gray-600 dark:text-gray-400">How often you need to check in</p>
               </div>
             </div>
-            <Badge variant="outline">6 months</Badge>
+            <Badge variant="outline">{formData.proofOfLifeInterval} months</Badge>
           </div>
           
           <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
@@ -189,6 +189,13 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, onDeploy }) => {
               <CheckCircle className="h-3 w-3 mr-1" />
               Set
             </Badge>
+          </div>
+
+          <div className="p-3 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-lg">
+            <p className="text-sm text-red-800 dark:text-red-200">
+              <strong>Important:</strong> Will execution occurs after 12 months of no check-ins, 
+              regardless of your selected interval.
+            </p>
           </div>
         </CardContent>
       </Card>

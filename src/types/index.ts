@@ -27,6 +27,7 @@ export interface Will {
   status: 'draft' | 'deployed' | 'active' | 'executed';
   createdAt: Date;
   letter?: string;
+  totalFunds?: number; // in ETH
 }
 
 export interface WalletState {
@@ -43,4 +44,5 @@ export interface FormData {
   confirmPassword: string;
   acknowledgeRisks: boolean;
   letter: string;
+  proofOfLifeInterval: number;
 }
