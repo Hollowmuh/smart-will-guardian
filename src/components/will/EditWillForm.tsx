@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Will, Beneficiary } from '../../types';
 import { Plus, Trash2, DollarSign, Users, Edit } from 'lucide-react';
-import { v4 as uuidv4 } from 'uuid';
 
 interface EditWillFormProps {
   will: Will;
@@ -15,6 +14,9 @@ interface EditWillFormProps {
   onClose: () => void;
   onSave: (updatedWill: Will) => void;
 }
+
+// Simple ID generator as alternative to uuid
+const generateId = () => Math.random().toString(36).substring(2) + Date.now().toString(36);
 
 const EditWillForm: React.FC<EditWillFormProps> = ({
   will,
@@ -35,7 +37,7 @@ const EditWillForm: React.FC<EditWillFormProps> = ({
     if (!newBeneficiary.walletAddress || newBeneficiary.percentage <= 0) return;
 
     const beneficiary: Beneficiary = {
-      id: uuidv4(),
+      id: generateId(),
       ...newBeneficiary
     };
 

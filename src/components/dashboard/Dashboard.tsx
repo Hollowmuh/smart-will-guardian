@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useWalletStore } from '../../stores/walletStore';
@@ -27,7 +26,7 @@ const Dashboard: React.FC = () => {
       ],
       overridePasswordHash: 'hashedpassword',
       proofOfLifeInterval: 12,
-      nextCheckIn: new Date('2024-07-15'),
+      nextCheckInDue: new Date('2024-07-15'),
       totalFunds: 5.5,
       letter: 'My dear family...'
     }
@@ -98,7 +97,7 @@ const Dashboard: React.FC = () => {
               <div className="ml-4">
                 <h3 className="font-semibold text-gray-900 dark:text-gray-100">Next Check-in</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  {mockWills[0]?.nextCheckIn?.toLocaleDateString()}
+                  {mockWills[0]?.nextCheckInDue?.toLocaleDateString()}
                 </p>
               </div>
             </CardContent>
@@ -170,7 +169,7 @@ const Dashboard: React.FC = () => {
                             Check-in every {will.proofOfLifeInterval} months
                           </p>
                           <p className="text-sm text-gray-600 dark:text-gray-400">
-                            Next: {will.nextCheckIn?.toLocaleDateString()}
+                            Next: {will.nextCheckInDue?.toLocaleDateString()}
                           </p>
                         </div>
                         <Button 
@@ -201,7 +200,7 @@ const Dashboard: React.FC = () => {
                   Proof of Life Reminder
                 </h3>
                 <p className="text-sm text-orange-700 dark:text-orange-300">
-                  Your next check-in is due on {mockWills[0].nextCheckIn?.toLocaleDateString()}.
+                  Your next check-in is due on {mockWills[0].nextCheckInDue?.toLocaleDateString()}.
                   Don't forget to confirm you're alive to prevent your will from executing.
                   Remember: If you don't check in for 12 consecutive months, your will will be executed automatically.
                 </p>
