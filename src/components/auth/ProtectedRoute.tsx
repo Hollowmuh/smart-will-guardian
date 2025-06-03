@@ -21,13 +21,13 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 
   if (!isConnected || !user?.isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Card className="w-full max-w-md">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <Card className="w-full max-w-md dark:bg-gray-800 dark:border-gray-700">
           <CardContent className="flex flex-col items-center justify-center p-8">
             <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-4">
               <Shield className="h-8 w-8 text-white" />
             </div>
-            <div className="flex items-center space-x-2 text-gray-600">
+            <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400">
               <Loader2 className="h-4 w-4 animate-spin" />
               <span>Checking authentication...</span>
             </div>

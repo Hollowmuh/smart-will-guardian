@@ -1,4 +1,3 @@
-
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import detectEthereumProvider from '@metamask/detect-provider';
@@ -38,7 +37,7 @@ export const useWalletStore = create<WalletStore>()(
             throw new Error('Please install MetaMask or another Web3 wallet');
           }
 
-          const ethersProvider = new BrowserProvider(provider);
+          const ethersProvider = new BrowserProvider(provider as any);
           const accounts = await ethersProvider.send('eth_requestAccounts', []);
           
           if (accounts.length === 0) {
@@ -58,7 +57,7 @@ export const useWalletStore = create<WalletStore>()(
           });
 
           // Set up event listeners
-          provider.on('accountsChanged', (accounts: string[]) => {
+          (provider as any).on('accountsChanged', (accounts: string[]) => {
             if (accounts.length === 0) {
               get().disconnectWallet();
             } else {
@@ -66,7 +65,7 @@ export const useWalletStore = create<WalletStore>()(
             }
           });
 
-          provider.on('chainChanged', (chainId: string) => {
+          (provider as any).on('chainChanged', (chainId: string) => {
             set({ chainId: parseInt(chainId, 16) });
           });
 

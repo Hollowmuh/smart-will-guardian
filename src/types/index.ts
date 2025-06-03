@@ -26,6 +26,7 @@ export interface Will {
   contractAddress?: string;
   status: 'draft' | 'deployed' | 'active' | 'executed';
   createdAt: Date;
+  letter?: string;
 }
 
 export interface WalletState {
@@ -41,4 +42,5 @@ export interface FormData {
   overridePassword: string;
   confirmPassword: string;
   acknowledgeRisks: boolean;
+  letter: string;
 }

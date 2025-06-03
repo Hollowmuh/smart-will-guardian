@@ -39,7 +39,7 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       <Header showWalletInfo={false} />
       
       <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] px-4">
@@ -47,29 +47,29 @@ const RegisterPage: React.FC = () => {
           <Button
             onClick={() => navigate('/')}
             variant="ghost"
-            className="mb-6 flex items-center space-x-2 text-gray-600 hover:text-gray-900"
+            className="mb-6 flex items-center space-x-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
           >
             <ArrowLeft className="h-4 w-4" />
             <span>Back to Home</span>
           </Button>
 
-          <Card className="shadow-xl border-0">
+          <Card className="shadow-xl border-0 dark:bg-gray-800 dark:border-gray-700">
             <CardHeader className="text-center pb-6">
               <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="h-8 w-8 text-white" />
               </div>
-              <CardTitle className="text-2xl font-bold text-gray-900">
+              <CardTitle className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                 Create Your Smart Will
               </CardTitle>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 Connect your wallet to get started with Smart Will
               </p>
             </CardHeader>
 
             <CardContent className="space-y-6">
               {error && (
-                <Alert className="border-red-200 bg-red-50">
-                  <AlertDescription className="text-red-700">
+                <Alert className="border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-950">
+                  <AlertDescription className="text-red-700 dark:text-red-300">
                     {error}
                   </AlertDescription>
                 </Alert>
@@ -78,7 +78,7 @@ const RegisterPage: React.FC = () => {
               <div className="space-y-4">
                 {!isConnected ? (
                   <div className="text-center">
-                    <p className="text-sm text-gray-600 mb-4">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                       Connect your wallet to create your Smart Will
                     </p>
                     <Button
@@ -94,12 +94,12 @@ const RegisterPage: React.FC = () => {
                   </div>
                 ) : (
                   <div className="text-center">
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
-                      <p className="text-sm text-green-700">
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4 dark:bg-green-950 dark:border-green-800">
+                      <p className="text-sm text-green-700 dark:text-green-300">
                         ✓ Wallet connected successfully
                       </p>
                     </div>
-                    <p className="text-sm text-gray-600 mb-4">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                       Sign a message to authenticate and create your account
                     </p>
                     <Button
@@ -112,12 +112,12 @@ const RegisterPage: React.FC = () => {
                 )}
               </div>
 
-              <div className="pt-6 border-t border-gray-200">
-                <p className="text-center text-sm text-gray-600">
+              <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
+                <p className="text-center text-sm text-gray-600 dark:text-gray-400">
                   Already have a Smart Will?{' '}
                   <button
                     onClick={() => navigate('/login')}
-                    className="text-blue-600 hover:text-blue-700 font-medium"
+                    className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
                   >
                     Sign in here
                   </button>
@@ -127,7 +127,7 @@ const RegisterPage: React.FC = () => {
           </Card>
 
           <div className="mt-6 text-center">
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
               By connecting your wallet, you agree to our terms of service and privacy policy.
             </p>
           </div>

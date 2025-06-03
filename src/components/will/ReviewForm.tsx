@@ -12,7 +12,8 @@ import {
   CheckCircle, 
   AlertTriangle,
   Loader2,
-  ExternalLink 
+  ExternalLink,
+  FileText
 } from 'lucide-react';
 
 interface ReviewFormProps {
@@ -43,26 +44,26 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, onDeploy }) => {
   if (deploymentTx) {
     return (
       <div className="text-center space-y-6">
-        <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto">
-          <CheckCircle className="h-10 w-10 text-green-600" />
+        <div className="bg-green-100 dark:bg-green-900 w-20 h-20 rounded-full flex items-center justify-center mx-auto">
+          <CheckCircle className="h-10 w-10 text-green-600 dark:text-green-400" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
             Smart Will Deployed Successfully!
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-400">
             Your Smart Will has been deployed to the blockchain
           </p>
         </div>
         
-        <Card className="border-green-200 bg-green-50">
+        <Card className="border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950">
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-green-800">
+              <span className="text-sm font-medium text-green-800 dark:text-green-200">
                 Transaction Hash:
               </span>
               <div className="flex items-center space-x-2">
-                <span className="text-sm font-mono text-green-700">
+                <span className="text-sm font-mono text-green-700 dark:text-green-300">
                   {deploymentTx.substring(0, 10)}...{deploymentTx.substring(-8)}
                 </span>
                 <Button variant="ghost" size="sm">
@@ -73,7 +74,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, onDeploy }) => {
           </CardContent>
         </Card>
         
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-600 dark:text-gray-400">
           Redirecting to dashboard...
         </p>
       </div>
@@ -83,10 +84,10 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, onDeploy }) => {
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
           Review Your Smart Will
         </h2>
-        <p className="text-gray-600">
+        <p className="text-gray-600 dark:text-gray-400">
           Please review all details before deploying to the blockchain
         </p>
       </div>
@@ -102,16 +103,16 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, onDeploy }) => {
         <CardContent>
           <div className="space-y-3">
             {formData.beneficiaries.map((beneficiary, index) => (
-              <div key={beneficiary.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <div key={beneficiary.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                 <div>
-                  <p className="font-medium text-gray-900">
+                  <p className="font-medium text-gray-900 dark:text-gray-100">
                     {beneficiary.name || `Beneficiary ${index + 1}`}
                   </p>
-                  <p className="text-sm text-gray-600 font-mono">
+                  <p className="text-sm text-gray-600 dark:text-gray-400 font-mono">
                     {beneficiary.walletAddress.substring(0, 10)}...{beneficiary.walletAddress.substring(-8)}
                   </p>
                   {beneficiary.email && (
-                    <p className="text-sm text-gray-600">{beneficiary.email}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{beneficiary.email}</p>
                   )}
                 </div>
                 <Badge variant="outline" className="text-sm">
@@ -121,16 +122,40 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, onDeploy }) => {
             ))}
           </div>
           
-          <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+          <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-950 rounded-lg">
             <div className="flex justify-between items-center">
-              <span className="font-medium text-blue-800">Total Allocation:</span>
-              <span className="font-bold text-blue-800">
+              <span className="font-medium text-blue-800 dark:text-blue-200">Total Allocation:</span>
+              <span className="font-bold text-blue-800 dark:text-blue-200">
                 {formData.beneficiaries.reduce((sum, b) => sum + b.percentage, 0)}%
               </span>
             </div>
           </div>
         </CardContent>
       </Card>
+
+      {/* Letter Summary */}
+      {formData.letter && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <FileText className="h-5 w-5" />
+              <span>Letter to Beneficiaries</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+              <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap line-clamp-6">
+                {formData.letter}
+              </p>
+              {formData.letter.length > 200 && (
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                  Letter preview - {formData.letter.length} characters total
+                </p>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Security Settings */}
       <Card>
@@ -141,26 +166,26 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, onDeploy }) => {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+          <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
             <div className="flex items-center space-x-3">
-              <Clock className="h-5 w-5 text-gray-600" />
+              <Clock className="h-5 w-5 text-gray-600 dark:text-gray-400" />
               <div>
-                <p className="font-medium text-gray-900">Proof of Life Interval</p>
-                <p className="text-sm text-gray-600">How often you need to check in</p>
+                <p className="font-medium text-gray-900 dark:text-gray-100">Proof of Life Interval</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">How often you need to check in</p>
               </div>
             </div>
             <Badge variant="outline">6 months</Badge>
           </div>
           
-          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+          <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
             <div className="flex items-center space-x-3">
-              <Shield className="h-5 w-5 text-gray-600" />
+              <Shield className="h-5 w-5 text-gray-600 dark:text-gray-400" />
               <div>
-                <p className="font-medium text-gray-900">Override Password</p>
-                <p className="text-sm text-gray-600">Emergency access configured</p>
+                <p className="font-medium text-gray-900 dark:text-gray-100">Override Password</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Emergency access configured</p>
               </div>
             </div>
-            <Badge variant="outline" className="text-green-600">
+            <Badge variant="outline" className="text-green-600 dark:text-green-400">
               <CheckCircle className="h-3 w-3 mr-1" />
               Set
             </Badge>
@@ -169,9 +194,9 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, onDeploy }) => {
       </Card>
 
       {/* Deployment Warning */}
-      <Alert className="border-yellow-300 bg-yellow-50">
-        <AlertTriangle className="h-4 w-4 text-yellow-600" />
-        <AlertDescription className="text-yellow-800">
+      <Alert className="border-yellow-300 bg-yellow-50 dark:border-yellow-800 dark:bg-yellow-950">
+        <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
+        <AlertDescription className="text-yellow-800 dark:text-yellow-200">
           <strong>Final Warning:</strong> Once deployed, your Smart Will cannot be modified. 
           Make sure all information is correct. Deployment will cost gas fees.
         </AlertDescription>
@@ -200,7 +225,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, onDeploy }) => {
 
       {isDeploying && (
         <div className="text-center">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             This may take a few minutes. Please don't close this window.
           </p>
         </div>
