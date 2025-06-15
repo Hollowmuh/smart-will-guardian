@@ -1,73 +1,53 @@
-# Welcome to your Lovable project
+# Smart Will Contract
 
-## Project info
+## Overview
 
-**URL**: https://lovable.dev/projects/8312ce8f-b395-4c52-b81e-08bcc29b5dff
+The **Smart Will** contract is a blockchain-based solution designed to automate the distribution of assets according to a user's wishes upon certain conditions (e.g., proof of death). It ensures transparency, security, and trustless execution without the need for intermediaries.
 
-## How can I edit this code?
+## How the Contract Works
 
-There are several ways of editing your application.
+### 1. Will Creation
 
-**Use Lovable**
+- The owner (testator) deploys the contract and specifies:
+    - List of beneficiaries.
+    - Asset allocation percentages or amounts.
+    - Conditions for execution (e.g., time delay, proof submission).
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8312ce8f-b395-4c52-b81e-08bcc29b5dff) and start prompting.
+### 2. Asset Funding
 
-Changes made via Lovable will be committed automatically to this repo.
+- The owner deposits assets (e.g., Ether, tokens) into the contract.
+- The contract securely holds these assets until execution conditions are met.
 
-**Use your preferred IDE**
+### 3. Triggering Execution
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- A trusted party (executor or oracle) submits proof (e.g., death certificate, off-chain verification).
+- The contract verifies the proof and checks all conditions.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 4. Asset Distribution
 
-Follow these steps:
+- Upon successful verification, the contract:
+    - Distributes assets to beneficiaries as specified.
+    - Emits events for transparency and record-keeping.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### 5. Security Features
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Only authorized parties can trigger execution.
+- Owner can update or revoke the will before execution.
+- All actions are recorded on-chain for auditability.
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Example Workflow
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+1. Alice creates a smart will, naming Bob and Carol as beneficiaries.
+2. Alice funds the contract with 10 ETH.
+3. Upon Alice's passing, a trusted oracle submits proof.
+4. The contract verifies the proof and sends 6 ETH to Bob, 4 ETH to Carol.
 
-**Edit a file directly in GitHub**
+## Benefits
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Trustless:** No need for lawyers or intermediaries.
+- **Transparent:** All actions are visible on the blockchain.
+- **Secure:** Assets are only released under predefined conditions.
 
-**Use GitHub Codespaces**
+## Disclaimer
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/8312ce8f-b395-4c52-b81e-08bcc29b5dff) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This contract is for educational purposes.
